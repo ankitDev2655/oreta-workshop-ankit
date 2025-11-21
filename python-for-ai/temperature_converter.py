@@ -7,5 +7,4 @@ try:
     print(f"{celsius}°C is equal to {fahrenheit}°F")
 
 except ValueError:
-    # Handle invalid input
     print("Invalid input")
