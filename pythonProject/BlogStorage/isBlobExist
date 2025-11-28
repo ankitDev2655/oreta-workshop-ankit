@@ -1,0 +1,21 @@
+import os
+from dotenv import load_dotenv
+
+from azure.storage.blob import BlobServiceClient
+
+
+# ------------------------------
+#  LOAD ENVIRONMENT VARIABLES
+# ------------------------------
+load_dotenv()
+
+
+connection = os.getenv("AZURE_STORAGE_CONNECTION_STRING")
+container = os.getenv("AZURE_CONTAINER_NAME")
+
+client = BlobServiceClient.from_connection_string(connection)
+container_client = client.get_container_client(container)
+
+print("\n📌 Blobs in container:")
+for blob in container_client.list_blobs():
+    print(" -", blob.name)
